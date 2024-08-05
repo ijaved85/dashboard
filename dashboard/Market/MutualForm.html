@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Data</title>
+
+  <!--Sweet Alert-->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js">
+  </script>
+
+  <!--Jquery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+  </script>
+
+  <!--Google Font-->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+  <!--Stylesheet-->
+  <link rel="stylesheet" href="./Cssfiles/MutualForm.css">
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js">
+  </script>
+  <sscript src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+  </script>
+
+  <!--Firebase Libraries-->
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-storage.js"></script>
+
+</head>
+<body>
+  <div class="container">
+    <h1>Pay Your SIP</h1>
+    <form id="mfNewData">
+      <div class="row">
+        <div class="column">
+          <label for="sell">Select Fund :</label><br>
+          <label id="sell"></label> <select name="sell" id="seel"><!--
+                                                <option value="ICICI">ICICI Prudential Technology Fund - Direct Plan - Growth</option>
+                                                <option value="Parag">Parag Parikh Flexi Cap Fund - Direct Plan - Growth</option>
+                                                <option value="Liquid">Quant Liquid Fund - Growth Option - Direct Plan</option>
+                                                <option value="TaxPlan">Quant Tax Plan - Growth Option - Direct Plan</option>
+                                                <option value="TaxSaver">Mirae Asset Tax Saver Fund - Direct Plan - Growth</option>
+                                                -->
+          </select>
+        </div>
+
+        <div class="column Patiencefrom" id="siphol">
+          <label for="patfrom">SIP Holder</label><br>
+          <div class="dooption">
+            <div class="in1">
+              <input type="radio" id="hn" name="holdername" value="Javed & Obaidur" checked>&emsp;Javed & Obaidur
+            </div>
+            <div class="in2">
+              <input type="radio" id="hn" name="holdername" value="Javed Iqbal">&emsp;Javed Iqbal
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <label for="amt">Amount :</label><br>
+          <label id="amt">Rs -&nbsp;</label>  <input type="number" id="amnt" placeholder="Amount">
+        </div>
+
+        <div class="column">
+          <label for="date">SIP Date :</label><br>
+          <input type="date" id="sipdate" placeholder="dd-mm-yyyy" value=""
+          min="1997-01-01" max="2030-12-31" required>
+        </div>
+
+        <div class="column">
+          <label for="nav">NAV :</label><br>
+          <input type="number" id="navval" placeholder="0.00" value="" step="any">
+        </div>
+
+        <div class="but" onclick='Pay()'>
+          Pay
+        </div>
+      </form>
+    </div>
+    <script src="./Scriptfiles/Firebase.js"></script>
+     <script src="./Scriptfiles/common.js"></script>
+    <script src="./Scriptfiles/MutualForm.js"></script>
+  </body>
+</html>

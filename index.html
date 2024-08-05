@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="fabicon.png">
+<link rel="manifest" href="./manifest.json">
+  
+  <!-- Icons -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- My CSS -->
+  <link rel="stylesheet" href="login.css">
+
+  <!--Sweet Alert-->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+  <!--Html to Pdf-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+  <!--Firebase Libraries-->
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
+
+  <title>Login</title>
+</head>
+<body>
+  <div class="preContent">
+	<svg class="pl" viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<linearGradient id="pl-grad1" x1="1" y1="0.5" x2="0" y2="0.5">
+			<stop offset="0%" stop-color="hsl(313,90%,55%)" />
+			<stop offset="100%" stop-color="hsl(223,90%,55%)" />
+		</linearGradient>
+		<linearGradient id="pl-grad2" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0%" stop-color="hsl(313,90%,55%)" />
+			<stop offset="100%" stop-color="hsl(223,90%,55%)" />
+		</linearGradient>
+	</defs>
+	<circle class="pl__ring" cx="100" cy="100" r="82" fill="none" stroke="url(#pl-grad1)" stroke-width="36" stroke-dasharray="0 257 1 257" stroke-dashoffset="0.01" stroke-linecap="round" transform="rotate(-90,100,100)" />
+	<line class="pl__ball" stroke="url(#pl-grad2)" x1="100" y1="18" x2="100.01" y2="182" stroke-width="36" stroke-dasharray="1 165" stroke-linecap="round" />
+</svg>
+</div>
+  <div class="login-box">
+   <div class="login-header">
+  <img src="./dashboard/img/me.jpg" alt="Login Image" class="login-image">
+</div>
+    <div class="input-box">
+      <input type="text" class="input-field" id="login-email" placeholder="Email" autocomplete="off" required>
+    </div>
+    <div class="input-box">
+      <input type="password" class="input-field" id="login-pass" placeholder="Password" autocomplete="off" required>
+    </div>
+    <div class="forgot">
+      <section style="opacity:0;">
+        <input type="checkbox" id="check">
+        <label for="check">Remember me</label>
+      </section>
+      <section id="LinkHandle">
+        <a href="#">Forgot Password</a>
+      </section>
+    </div>
+    <div class="input-sumbit" id="submitBtn">
+      <button class="sumbit-btn" id="submit"></button>
+      <label for="sumbit">Sign In</label>
+    </div>
+     <div class="input-sumbit" id="resetBtn" hidden>
+      <button class="sumbit-btn" id="reset"></button>
+      <label for="sumbit">Send Link</label>
+    </div>
+    <div class="sign-up-link" id="installApp">
+      <p>Install Mobile App.</p>
+    </div>
+  </div>
+  <script src="./dashboard/Market/Scriptfiles/Firebase.js"></script>
+  <script src="./dashboard/Market/Scriptfiles/common.js"></script>
+  <script src="./login.js"></script>
+</body>
+</html>
