@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/x-icon" href="favicon.png" />
+		<!-- Icons -->
+		<link
+			href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+		/>
+		<link
+			href="https://fonts.googleapis.com/icon?family=Material+Icons"
+			rel="stylesheet"
+		/>
+
+		<!-- My CSS -->
+		<link rel="stylesheet" href="style.css" />
+
+		<!--Sweet Alert-->
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+		<!--Html to Pdf-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js"></script>
+		<script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+
+		<!--Firebase Libraries-->
+		<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-analytics.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-database.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-storage.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
+
+		<title>My Wallet</title>
+	</head>
+	<body>
+		<!-- SIDEBAR -->
+		<section id="sidebar">
+			<span class="brand">
+				<i class="bx bxs-dashboard"></i>
+				<span class="text">Dashboard</span>
+			</span>
+			<ul class="side-menu top">
+				<li class="active">
+					<a href="#Wallet" onclick="showWallet()">
+						<i class="fa fa-inr" aria-hidden="true"></i>
+						<span class="text">Wallet</span>
+					</a>
+				</li>
+
+				<li>
+					<a href="#Market" onclick="showMarket()">
+						<span class="material-icons fa">candlestick_chart</span>
+						<span class="text">Market</span>
+					</a>
+				</li>
+
+				<li>
+					<a href="#Cards" onclick="showCards()">
+						<i class="bx bxs-credit-card"></i>
+						<span class="text">Cards</span>
+					</a>
+				</li>
+
+				<li>
+					<a href="#QR" onclick="showQR()">
+						<span class="material-icons fa">qr_code_2</span>
+						<span class="text">QR Code</span>
+					</a>
+				</li>
+				<li>
+					<a href="#AKU" onclick="showAKU()">
+						<span class="material-icons fa">school</span>
+						<span class="text">Aryabhatta Knowledge University</span>
+					</a>
+				</li>
+
+				<li>
+					<a href="#Members" onclick="showMembers()">
+						<i class="bx bxs-group"></i>
+						<span class="text">Members</span>
+					</a>
+				</li>
+				<li>
+					<a href="#Gemini" onclick="showGemini()">
+						<i class="bx bxs-brain"></i>
+						<span class="text">Gemini</span>
+					</a>
+				</li>
+
+				<li>
+					<a href="#Notes" onclick="showNotes()">
+						<span class="material-icons fa">sticky_note_2</span>
+						<span class="text">Notes</span>
+					</a>
+				</li>
+			</ul>
+
+			<ul class="side-menu">
+				<li id="addEntry" key="key" data-key="dataId">
+					<a href="#" class="addEntry">
+						<span class="material-icons fa">add</span>
+						<span class="text">New Entry</span>
+					</a>
+				</li>
+				<li id="downEntry" key="key" data-key="dataId">
+					<a href="#" class="downEntry">
+						<span class="material-icons fa">download</span>
+						<span class="text">Download</span>
+					</a>
+				</li>
+				<li id="mfEntry">
+					<a href="#" class="mfEntry">
+						<span class="material-icons fa">add</span>
+						<span class="text">New Entry</span>
+					</a>
+				</li>
+				<li id="mf-operation">
+					<a href="#" class="mf-operation">
+						<span class="material-icons fa">settings</span>
+						<span class="text">Operation</span>
+					</a>
+				</li>
+				<li id="switch-mode">
+					<a href="#">
+						<span class="material-icons fa">dark_mode</span>
+						<span class="text">Dark Mode</span>
+					</a>
+				</li>
+				<li>
+					<a href="#" class="logout" onclick="logout()">
+						<span class="material-icons fa">logout</span>
+						<span class="text">Logout</span>
+					</a>
+				</li>
+			</ul>
+		</section>
+		<!-- SIDEBAR -->
+
+		<!-- CONTENT -->
+		<section id="content">
+			<!-- NAVBAR -->
+			<nav>
+				<span class="profnam">Javed Iqbal</span>
+				<a href="#" class="profile">
+					<img src="./img/me.jpg" />
+				</a>
+			</nav>
+			<!-- NAVBAR -->
+
+			<!-- MAIN -->
+			<main>
+				<!--preloader start-->
+				<div id="preloader">
+					<div id="loader"></div>
+				</div>
+				<!--preloader end-->
+
+				<div id="Wallet">
+					<div class="head-title">
+						<div class="left">
+							<h1>Wallet</h1>
+							<ul class="breadcrumb"></ul>
+						</div>
+						<a
+							href="#"
+							class="btn-Customer"
+							onclick="toggleCustomer('NewCustomer')"
+						>
+							<span class="material-icons fa">add</span>
+							<span class="text">Add Customer</span>
+						</a>
+					</div>
+
+					<ul class="box-info">
+						<li>
+							<span class="material-icons fa">arrow_downward</span>
+							<span class="text">
+								<p>I will get.</p>
+								<h4><span style="color: #009432" class="Receive"></span></h4>
+							</span>
+						</li>
+
+						<li>
+							<span class="material-icons fa">arrow_upward</span>
+							<span class="text">
+								<p>I will pay.</p>
+								<h4><span style="color: #d63031" class="Pay"></span></h4>
+							</span>
+						</li>
+					</ul>
+
+					<div class="table-data">
+						<div class="customer" style="max-height: 22vh">
+							<table>
+								<thead>
+									<tr>
+										<th>Photo</th>
+										<th>Name</th>
+										<th>Amount</th>
+									</tr>
+								</thead>
+								<tbody id="fireWallet"></tbody>
+							</table>
+						</div>
+
+						<div class="customer" id="tran-info" style="max-height: 43vh">
+							<table>
+								<thead>
+									<tr>
+										<th id="custName"></th>
+										<th></th>
+										<th id="custPhone"></th>
+									</tr>
+									<tr class="wTableHead">
+										<th>Date</th>
+										<th>Purpose</th>
+										<th>Amount</th>
+									</tr>
+								</thead>
+								<tbody id="transHis"></tbody>
+							</table>
+						</div>
+						<iframe
+							src="./invoice.html"
+							id="invoice"
+							frameborder="0"
+							style="width: 0; height: 0; opacity: 0; border-radius: 15px"
+						></iframe>
+					</div>
+
+					<div class="table-data" id="fireForm">
+						<!-- Form from js-->
+					</div>
+				</div>
+
+				<!-------------------Stockss---------------------------->
+				<div class="market" id="Market">
+					<div class="head-title">
+						<div class="left">
+							<h1>Market</h1>
+							<ul class="breadcrumb" style="margin-bottom: 15px"></ul>
+						</div>
+					</div>
+					<div class="table-data">
+						<div class="fireMarket">
+							<!-- Data from Firebase-->
+							<iframe
+								src="Market/MutualFund.html"
+								id="mutualfund"
+								frameborder="0"
+								style="width: 100%; height: 65vh; border-radius: 15px"
+							></iframe>
+							<iframe
+								src="Market/MutualForm.html"
+								id="mutualform"
+								frameborder="0"
+								style="width: 100%; height: 45vh; border-radius: 15px"
+							></iframe>
+						</div>
+					</div>
+				</div>
+
+				<!-------------------Cards--------------------------------->
+				<div id="Cards">
+					<div class="head-title">
+						<div class="left">
+							<h1>Cards</h1>
+							<ul class="breadcrumb" style="margin-bottom: 15px"></ul>
+						</div>
+					</div>
+					<div class="table-data">
+						<div id="fireCards" style="max-height: 73vh"></div>
+					</div>
+				</div>
+
+				<!-------------------Qr Code---------------------------->
+								<div id="QR" class="qrClass">
+					<div class="head-title">
+						<div class="left">
+							<h1>QR Code</h1>
+							<ul class="breadcrumb" style="margin-bottom: 15px"></ul>
+						</div>
+					</div>
+
+					<div class="table-data">
+					  	
+						<div class="fireQR">
+						  <div class="qrSelect">
+				<div class="qr-item qr1">Scan QR Code</div>
+				<div class="qr-item qr2">Pay QR Code</div>
+			</div>
+								<div id="iframe-container"></div>
+
+							<!-- <iframe
+								src="https://"
+								id="qrcode"
+								frameborder="0"
+								style="width: 100%; height: 65vh; border-radius: 15px"
+							></iframe> -->
+						</div>
+					</div>
+				</div>
+
+				<!-------------------Aku ---------------------------->
+								<div id="AKU" class="akuClass">
+					<div class="head-title">
+						<div class="left">
+							<h1 class="tiaku">Aryabhatta Knowledge University</h1>
+							<ul class="breadcrumb" style="margin-bottom: 15px"></ul>
+						</div>
+					</div>
+
+					<div class="table-data">
+						<div class="fireAku">
+							<iframe
+								src="AKU/index.html"
+								id="aku"
+								frameborder="0"
+								style="width: 100%; height: 65vh; border-radius: 15px"
+							></iframe>
+						</div>
+					</div>
+				</div>
+
+				<!-------------------Members---------------------------->
+				<div class="member" id="Members">
+					<div class="head-title">
+						<div class="left">
+							<h1>Members</h1>
+							<ul class="breadcrumb" style="margin-bottom: 15px"></ul>
+						</div>
+					</div>
+					<div class="table-data">
+						<ul id="member-list">
+							<!--<li class="not-completed">
+                                              <p>Javed</p>
+                                              <p class="role status">Admin</p>
+                                            </li>-->
+						</ul>
+					</div>
+				</div>
+
+				<!-------------------Gemini--------------------------------->
+				<div id="Gemini" class="geminiClass">
+					<div class="head-title">
+						<div class="left">
+							<h1>Gemini</h1>
+							<ul class="breadcrumb" style="margin-bottom: 15px"></ul>
+						</div>
+					</div>
+
+					<div class="table-data">
+						<div class="fireGemini">
+							<iframe
+								src="Gemini/index.html"
+								id="gemini"
+								frameborder="0"
+								style="width: 100%; height: 65vh; border-radius: 15px"
+							></iframe>
+						</div>
+					</div>
+				</div>
+
+				<!-------------------Note--------------------------------->
+				<div id="Note" class="noteClass">
+					<div class="head-title">
+						<div class="left">
+							<h1>Stickey Notes</h1>
+							<ul class="breadcrumb" style="margin-bottom: 15px"></ul>
+						</div>
+					</div>
+
+					<div class="table-data">
+						<div class="fireNote">
+							<iframe
+								src="Note/index.html"
+								id="notes"
+								frameborder="0"
+								style="width: 100%; height: 65vh; border-radius: 15px"
+							></iframe>
+						</div>
+					</div>
+				</div>
+			</main>
+			<!-- MAIN -->
+		</section>
+		<!-- CONTENT -->
+
+		<script src="./Market/Scriptfiles/Firebase.js"></script>
+		<script src="./Market/Scriptfiles/common.js"></script>
+		<script src="./Market/Scriptfiles/Nav.js"></script>
+		<script src="./Dashboard.js"></script>
+		<script src="./script.js"></script>
+		<script src="./Form.js"></script>
+	</body>
+</html>

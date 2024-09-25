@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Statement</title>
+
+
+  <!-- Icons -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!--Sweet Alert-->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!--Html to Pdf-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js"></script>
+
+  <!--Firebase Libraries-->
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zain:wght@200;300;400;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Zain:wght@200;300;400;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Zain:wght@200;300;400;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Zain:wght@200;300;400;700;800;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="statement" style="position:relative;">
+     <img class="headerImg" src="./img/InvoiceHeader.png" style="width: 40%;
+  max-height: 80%;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  opacity: 0.1;
+  filter: drop-shadow(0 0mm 1mm #fff);
+  z-index: 1;"/>
+    <div class="header" style="font-family: 'Zain', sans-serif;
+  font-weight: 400;">
+     
+      <h2 style=" font-weight: 700; z-index:20;">My Wallet</h2>
+      <p>
+        Phone: <span class="StaNumber" style="font-family: 'Zain', sans-serif;
+  font-weight: 400;">8346051322</span>
+      </p>
+      <p>
+        Name: <span class="StaName" style="font-family: "Zain", sans-serif;
+  font-weight: 400;">Javed Iqbal</span>
+      </p>
+    </div>
+    <div class="transactions">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Debit (₹)</th>
+            <th>Credit (₹)</th>
+            <th>Balance (₹)</th>
+          </tr>
+        </thead>
+        <tbody id="fireStatement" style="border: 1px solid #ddd;">
+         <tr>
+            <td class="date">2022-01-01</td>
+            <td>Initial Deposit so you needthis bro</td>
+            <td class="deposit"></td>
+            <td class="withdraw">$100.00</td>
+            <td class="balance">$100.00</td>
+          </tr>
+       
+        </tbody>
+        <tfoot>
+          <tr>
+            <th colspan="4">Total</th>
+            <th class="total" style="padding-right: 5px;">250.00</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <footer class="footer" style="font-size: 30px; color:#000;">
+      <div class="social-icons">
+        <p style="color:#000;">
+          Contact Me:&emsp;
+        </p>
+        <a href="mailto:Javediqbal8572+MyWallet@gmail.com?subject=&body=Hi"><svg xmlns="http://www.w3.org/2000/svg" height="14px" viewBox="0 -960 960 960" width="14px" fill="#000"  filter="url(#drop-shadow)"> <filter id="drop-shadow">
+    <feDropShadow dx="0.2" dy="0.2" stdDeviation="1.1" flood-color="#fff" /></filter>
+  <path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z"/>
+</svg></a>
+        
+        <a href="tel:+91 8346051322"><svg xmlns="http://www.w3.org/2000/svg" height="14px" viewBox="0 -960 960 960" width="14px" fill="#000" filter="url(#drop-shadow)"><filter id="drop-shadow">
+    <feDropShadow dx="0.2" dy="0.2" stdDeviation="1.1" flood-color="#fff" /></filter><path d="M796-120q-119 0-240-55.5T333-333Q231-435 175.5-556T120-796q0-18.86 12.57-31.43T164-840h147.33q14 0 24.34 9.83Q346-820.33 349.33-806l26.62 130.43q2.05 14.9-.62 26.24-2.66 11.33-10.82 19.48L265.67-530q24 41.67 52.5 78.5T381-381.33q35 35.66 73.67 65.5Q493.33-286 536-262.67l94.67-96.66q9.66-10.34 23.26-14.5 13.61-4.17 26.74-2.17L806-349.33q14.67 4 24.33 15.53Q840-322.27 840-308v144q0 18.86-12.57 31.43T796-120ZM233-592l76-76.67-21-104.66H187q3 41.66 13.67 86Q211.33-643 233-592Zm365.33 361.33q40.34 18.34 85.84 29.67 45.5 11.33 89.16 13.67V-288l-100-20.33-75 77.66ZM233-592Zm365.33 361.33Z"/></svg></a>
+        <a href="sms:8346051322?body=Hii"><svg xmlns="http://www.w3.org/2000/svg" height="14px" viewBox="0 -960 960 960" width="14px" fill="#000" filter="url(#drop-shadow)"> <filter id="drop-shadow">
+    <feDropShadow dx="0.2" dy="0.2" stdDeviation="1.1" flood-color="#fff" /></filter><path d="M310.67-522q17 0 28.5-11.5t11.5-28.5q0-17-11.5-28.5t-28.5-11.5q-17 0-28.5 11.5t-11.5 28.5q0 17 11.5 28.5t28.5 11.5ZM482-522q17 0 28.5-11.5T522-562q0-17-11.5-28.5T482-602q-17 0-28.5 11.5T442-562q0 17 11.5 28.5T482-522Zm166.67 0q17 0 28.5-11.5t11.5-28.5q0-17-11.5-28.5t-28.5-11.5q-17 0-28.5 11.5t-11.5 28.5q0 17 11.5 28.5t28.5 11.5ZM80-80v-733.33q0-27 19.83-46.84Q119.67-880 146.67-880h666.66q27 0 46.84 19.83Q880-840.33 880-813.33v506.66q0 27-19.83 46.84Q840.33-240 813.33-240H240L80-80Zm131.33-226.67h602v-506.66H146.67v575l64.66-68.34Zm-64.66 0v-506.66 506.66Z"/></svg></a>
+        <a href="https://wa.me/918346051322?text=Hii" ><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="14px" height="14px" viewBox="0 0 24 24" fill="#000" filter="url(#drop-shadow)"><filter id="drop-shadow">
+    <feDropShadow dx="0.2" dy="0.2" stdDeviation="1.1" flood-color="#fff" />
+  </filter>
+    <path d="M 12.011719 2 C 6.5057187 2 2.0234844 6.478375 2.0214844 11.984375 C 2.0204844 13.744375 2.4814687 15.462563 3.3554688 16.976562 L 2 22 L 7.2324219 20.763672 C 8.6914219 21.559672 10.333859 21.977516 12.005859 21.978516 L 12.009766 21.978516 C 17.514766 21.978516 21.995047 17.499141 21.998047 11.994141 C 22.000047 9.3251406 20.962172 6.8157344 19.076172 4.9277344 C 17.190172 3.0407344 14.683719 2.001 12.011719 2 z M 12.009766 4 C 14.145766 4.001 16.153109 4.8337969 17.662109 6.3417969 C 19.171109 7.8517969 20.000047 9.8581875 19.998047 11.992188 C 19.996047 16.396187 16.413812 19.978516 12.007812 19.978516 C 10.674812 19.977516 9.3544062 19.642812 8.1914062 19.007812 L 7.5175781 18.640625 L 6.7734375 18.816406 L 4.8046875 19.28125 L 5.2851562 17.496094 L 5.5019531 16.695312 L 5.0878906 15.976562 C 4.3898906 14.768562 4.0204844 13.387375 4.0214844 11.984375 C 4.0234844 7.582375 7.6067656 4 12.009766 4 z M 8.4765625 7.375 C 8.3095625 7.375 8.0395469 7.4375 7.8105469 7.6875 C 7.5815469 7.9365 6.9355469 8.5395781 6.9355469 9.7675781 C 6.9355469 10.995578 7.8300781 12.182609 7.9550781 12.349609 C 8.0790781 12.515609 9.68175 15.115234 12.21875 16.115234 C 14.32675 16.946234 14.754891 16.782234 15.212891 16.740234 C 15.670891 16.699234 16.690438 16.137687 16.898438 15.554688 C 17.106437 14.971687 17.106922 14.470187 17.044922 14.367188 C 16.982922 14.263188 16.816406 14.201172 16.566406 14.076172 C 16.317406 13.951172 15.090328 13.348625 14.861328 13.265625 C 14.632328 13.182625 14.464828 13.140625 14.298828 13.390625 C 14.132828 13.640625 13.655766 14.201187 13.509766 14.367188 C 13.363766 14.534188 13.21875 14.556641 12.96875 14.431641 C 12.71875 14.305641 11.914938 14.041406 10.960938 13.191406 C 10.218937 12.530406 9.7182656 11.714844 9.5722656 11.464844 C 9.4272656 11.215844 9.5585938 11.079078 9.6835938 10.955078 C 9.7955938 10.843078 9.9316406 10.663578 10.056641 10.517578 C 10.180641 10.371578 10.223641 10.267562 10.306641 10.101562 C 10.389641 9.9355625 10.347156 9.7890625 10.285156 9.6640625 C 10.223156 9.5390625 9.737625 8.3065 9.515625 7.8125 C 9.328625 7.3975 9.131125 7.3878594 8.953125 7.3808594 C 8.808125 7.3748594 8.6425625 7.375 8.4765625 7.375 z"></path>
+</svg></a>
+      </div>
+  <!-- <a href="upi://pay?pa=afifislam@axisb&pn=Javed Iqbal&am=87"><button class="pay-now">Pay Now</button></a> -->
+    <p  style="font-size: 12px; font-weight:500; color:#000">Generates On: <span class="genDate" style="font-weight:350;">10-03-2001</span></p><br>
+    <p class="Dater" style="font-size:12px;  font-weight:500;  color:#000">From: <span class="fromD" style="font-weight:350;">10-03-2001</span> To: <span class="toD" style="font-weight:350;">10-03-2001</span></p>
+    </footer>
+    <div id="stamp" style="margin-top:10px; float:right; margin-right:30px;">
+      <img class="stamp" style="max-width:200px; height:180px;" src="./img/stamp.png" />
+</div>
+ <img class="headerImg" src="./img/InvoiceFooter.png" style="width: 40%;
+  max-height: 80%;
+  position: absolute;
+  bottom:5px;
+  right: 5px;
+  opacity: 0.1;
+  filter: drop-shadow(0 0mm 1mm #fff);
+  z-index: 1;"/>
+  </div>
+  <script src="./Market/Scriptfiles/Firebase.js"></script>
+  <script src="./Market/Scriptfiles/common.js"></script>
+ <script type="text/javascript" charset="utf-8">
+   // Global styles
+$("*").css({
+  "box-sizing": "border-box",
+  "margin": 0,
+  "padding": 0,
+  "font-family": "\"Josefin Sans\", sans-serif"
+});
+
+// Body styles
+$("body").css({
+  "font-family": "Arial, sans-serif",
+  "font-size": "16px",
+  "line-height": 1.5,
+  "color": "#333",
+  "background-color": "#00cec9"
+});
+
+const font = new FontFace('myFirstFont', 'url(./Roboto-Regular.ttf)');
+font.load().then(function(loadedFont) {
+  document.fonts.add(loadedFont);
+  document.body.style.fontFamily = 'myFirstFont';
+}).catch(function(error) {
+  console.error('Error loading font:', error);
+});
+
+// Header styles
+$(".header").css({
+  "background": "linear-gradient(135deg, #686de0, #6c5ce7, #0984e3, #a29bfe, #a29bfe)",
+  "text-shadow": "1px 1px 3px #000",
+  "color": "#fff",
+  "padding": "10px",
+  "border-bottom": "1px solid #000",
+  "border-radius": "10px 10px 0 0",
+  "font-weight": 600,
+  "font-family": "\"Zain\", sans-serif",
+  "box-shadow": "0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1)"
+});
+/*
+$(".header").css({
+  "position": "relative",
+  "background": "linear-gradient(135deg, #686de0, #6c5ce7, #0984e3, #a29bfe, #a29bfe)"
+});
+
+/*
+$(".header::before").css({
+  "content": "",
+  "position": "relative",
+  "top": "0",
+  "left": "0",
+  "width": "100%",
+  "height": "100%",
+  "background-image": "url('./img/Design.png')",
+  "background-size": "cover",
+  "background-position": "center",
+  "z-index":"77"
+});*/
+
+// Header h2 styles
+$(".header h2").css({
+  "margin-top": 0,
+  "font-weight": 800,
+  "font-size": "40px",
+  "text-align": "center"
+});
+
+// Header p styles
+$(".header p:nth-child(even)").css({
+  "float": "right",
+  "margin-left": "20px"
+});
+
+// Transactions styles
+$(".transactions").css({
+  "padding": 0
+});
+
+// Transactions table styles
+$(".transactions table").css({
+  "width": "100%",
+  "border": "1px solid #000",
+  "border-collapse": "collapse"
+});
+
+// Thead styles
+$("thead").css({
+  "background": "#fdcb6e"
+});
+
+// Transactions th and td styles
+$(".transactions th, .transactions td").css({
+  "border": "1px solid #ddd",
+  "padding": "8px",
+  "text-align": "center"
+});
+
+// Transactions th styles
+$(".transactions th").css({
+  "background-color": "#f0f0f0",
+  "font-weight": "bold"
+});
+
+// Deposit styles
+$(".deposit").css({
+  "color": "green"
+});
+
+// Withdraw styles
+$(".withdraw").css({
+  "color": "red"
+});
+
+// Withdraw, deposit, total, and balance styles
+$(".withdraw").css({
+  "text-align": "right"
+});
+$(".deposit").css({
+  "text-align": "right"
+});
+$(".total").css({
+  "text-align": "right"
+});
+$(".balance").css({
+  "text-align": "right"
+});
+
+// Statement table td styles
+$(".statement table td.withdraw, .statement table td.deposit, .statement table td.total, .statement table td.balance, .statement table th.total").css({
+  "text-align": "right"
+});
+
+// Statement table td date styles
+$(".statement table td").css({
+   "border": "1px solid #ddd"
+});
+
+// Transactions tfoot th styles
+$(".transactions tfoot th").css({
+  "background-color": "#fff",
+  "font-weight": "bold"
+});
+
+// Withdraw, deposit, total, and balance styles
+$(".withdraw").css({
+  "text-align": "right"
+});
+$(".deposit").css({
+  "text-align": "right"
+});
+$(".total").css({
+  "text-align": "right"
+});
+$(".balance").css({
+  "text-align": "right"
+});
+// Footer styles
+$(".footer").css({
+  "background": "linear-gradient(-45deg, #686de0, #6c5ce7, #0984e3, #a29bfe, #a29bfe)",
+  "text-shadow": "1px 1px 3px #fff",
+  "color": "#fff",
+  "padding": "5px",
+  "border-top": "1px solid #333",
+  "border-radius": "0 0 10px 10px",
+  "display": "flex",
+  "justify-content": "space-between",
+  "font-size":"18px",
+  "align-items": "center",
+  "font-family": "\"Philosopher\", sans-serif"
+});
+
+// Social icons styles
+$(".social-icons").css({
+  "display": "flex",
+  "align-items": "center",
+  "padding": "8px",
+  "text-shadow": "1px 1px 3px #00",
+  "font-family": "\"Philosopher\", sans-serif"
+});
+
+// Social icons p styles
+$(".social-icons p").css({
+  "font-size": "10px"
+});
+
+// Social icons a styles
+$(".social-icons a").css({
+  "margin-right": "15px",
+  "color": "#fff"
+});
+
+// Social icons a hover styles
+$(".social-icons a:hover").css({
+  "color": "#ccc"
+});
+/*
+// Fa and fab styles
+$(".fa").css({
+  "font-size": "10px"
+});
+$(".fab").css({
+  "font-size": "10px"});
+*/
+// Pay now styles
+$(".pay-now").css({
+  "background-color": "#2ecc71",
+  "color": "#fff",
+  "border": "none",
+  "padding": "3px 5px",
+  "font-size": "10px",
+  "cursor": "pointer",
+  "text-align": "center",
+  "justify-content": "center",
+  "margin-right": "10px",
+  "border-radius": "6px"
+});
+
+// Pay now hover styles
+$(".pay-now:hover").css({
+  "background-color": "#3e8e41"
+});
+
+// Responsive design
+$(window).resize(function() {
+  if ($(window).width() <= 768) {
+    $(".statement").css({
+      "margin": "20px auto",
+      "padding": "15px"
+    });
+
+    $(".transactions table").css({
+      "font-size": "14px"
+    });
+
+    $(".transactions th,.transactions td").css({
+      "padding": "5px"
+    });
+  }
+
+  if ($(window).width() <= 480) {
+    $(".statement").css({
+      "margin": "10px auto",
+      "padding": "10px"
+    });
+
+    $(".transactions table").css({
+      "font-size": "12px"
+    });
+
+    $(".transactions th,.transactions td").css({
+      "padding": "3px"
+    });
+  }
+});
+ </script>
+</body>
+</html>

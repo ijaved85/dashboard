@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	scroll-behavior: smooth;
+	scrollbar-width: none;
+	box-sizing: border-box;
+	font-family: "Noto Serif", serif;
+	font-style: normal;
+}
+*:focus {
+	outline: none;
+	box-shadow: none;
+}
+
+a {
+	text-decoration: none;
+}
+p{
+  font-weight: bold;
+}
+.container {
+	margin: 10px;
+}
+.headSem {
+  font-size: 4.5rem;
+  display: block;
+  margin: 0 auto;
+  font-weight: 900;
+  width: fit-content;
+}
+.semester {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 5px;
+	margin: 2rem auto;
+	font-size: 2rem;
+}
+
+.semester-item {
+	outline: none;
+	text-align: center;
+	background-color: transparent;
+	border-radius: 5px;
+	padding: 5px;
+	cursor: pointer;
+}
+
+.semester-item.active {
+	background-color: #3c91e6;
+	color: #fff;
+}
+.headSer{
+  font-size: 4.5rem;
+  display: block;
+  margin: 0 auto;
+  font-weight: 900;
+  width: fit-content;
+}
+.searchBy {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  width: 100%;
+}
+
+.searchOpt {
+  margin: 0 40px; 
+  font-size: 2.5rem;
+}
+
+.searchBy p {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.radio {
+	position: relative;
+	margin: 0 0.1rem 0 0;
+	margin: 0 5px;
+	outline: none;
+	cursor: pointer;
+}
+.radio:before {
+	-webkit-transition: -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+	-moz-transition: -moz-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+	transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+	-webkit-transform: scale(0, 0);
+	-moz-transform: scale(0, 0);
+	-ms-transform: scale(0, 0);
+	-o-transform: scale(0, 0);
+	transform: scale(0, 0);
+	content: "";
+	position: absolute;
+	top: 0.1rem;
+	left: 0.125rem;
+	z-index: 1;
+	width: 0.7rem;
+	height: 0.7rem;
+	background: #3c91e6;
+	border-radius: 50%;
+}
+.radio:checked:before {
+	-webkit-transform: scale(1, 1);
+	-moz-transform: scale(1, 1);
+	-ms-transform: scale(1, 1);
+	-o-transform: scale(1, 1);
+	transform: scale(1, 1);
+}
+.radio:after {
+	content: "";
+	position: absolute;
+	top: -0.15rem;
+	left: -0.125rem;
+	width: 1rem;
+	height: 1rem;
+	background: #fff;
+	border: 2px solid #3c91e6;
+	border-radius: 50%;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px auto;
+    table-layout: fixed;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  /*  word-wrap: break-word;*/
+}
+th {
+    background-color: #f0f0f0;
+}
+
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+.pagination a {
+    color: black;
+    display: inline-block;
+    margin: 0 5px;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+.pagination a.active {
+    background-color: #3c91e6;
+    border-radius: 50%;
+    color: white;
+}
+
+.searchBar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.headBar{
+  font-size: 2.2rem;
+}
+.searchBar p{
+  margin-top: 1rem;
+   padding: 0 1rem;
+}
+.searchInputWrapper {
+  position: relative;
+  font-size: 2.2rem;
+  margin-top:15px;
+}
+
+.searchInput {
+  width: 19rem;
+  margin-right:1rem ;
+  font-size: 1.5rem;
+  height: 4rem;
+  padding: 0 1rem;
+  border-radius: 2rem;
+  border: none;
+  background: #ccc;
+  transition: transform 0.1s ease-in-out;
+}
+
+::placeholder {
+  font-size: 1.5rem;
+  color: #a1a1a1;
+}
+
+/* hide the placeholder text on focus */
+:focus::placeholder {
+  text-indent: -999px;
+}
+
+.searchInput:focus {
+  outline: none;
+  transform: scale(1.1);
+  transition: all 0.1s ease-in-out;
+}
+
+.searchInputIcon {
+  position: absolute;
+  right: 1.8rem;
+  top: 1rem;
+  color: #a1a1a1;
+  font-size: 2.2rem;
+  transition: all 0.1s ease-in-out;
+}
+
+.searchBar:focus-within > .searchInputWrapper > .searchInputIcon {
+  right: 0.2rem;
+}
+
+
+.noData {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh; 
+}
+
+.semMess {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #666; /* adjust the color to your liking */
+  text-align: center;
+  padding: 2rem;
+  border-radius: 10px;
+  background-color: #fff; /* add a background color to make it more visible */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* add a subtle shadow */
+}
+
+
+
+@media (max-width: 480px) {
+  * {
+    zoom: 0.9;
+  }
+}

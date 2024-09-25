@@ -1,0 +1,251 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+/*
+body {
+  margin: 0;
+  font-family: "Chakra Petch", sans-serif;
+  background-color: #f2f2f2;
+}*/
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /*font-family: "Chakra Petch", sans-serif;*/
+}
+
+:root {
+  --poppins: 'Poppins', sans-serif;
+  --lato: 'Lato', sans-serif;
+--hue: 223;
+	--bg: hsl(var(--hue),10%,90%);
+	--fg: hsl(var(--hue),10%,10%);
+	--rgbalight: 249, 249, 249;
+	
+  --light: #F9F9F9;
+  --blue: #3C91E6;
+  --light-blue: #CFE8FF;
+  --grey: #eee;
+  --dark-grey: #AAAAAA;
+  --dark: #342E37;
+  --red: #d63031;
+  --yellow: #FFCE26;
+  --light-yellow: #FFF2C6;
+  --light-green: #7bed9f;
+  --green: #009432;
+  --light-red: #ff7675;
+  --orange: #FD7238;
+  --light-orange: #FFE0D3;
+  --entry-head: #2E5984;
+  --summary-head:#192841;
+  --white-input:#fff;
+  --login-btn:#000;
+  --shadow: rgba(0,0,0,0.05);
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body.dark {
+  --bg: hsl(var(--hue),10%,90%);
+		--fg: hsl(var(--hue),10%,10%);
+		 --rgbalight: 12, 12, 30;
+		 
+  --light: #0C0C1E;
+  --grey: #060714;
+  --dark: #FBFBFB;
+  --entry-head :#40407a;
+  --summary-head: #152238;
+  --white-input:#36454F;
+  --login-btn:#1976D2;
+ --shadow: rgba(245, 245, 245, 0.2);
+}
+
+body {
+  background: var(--grey);
+  font-family: "Merriweather", serif;
+  overflow: none;
+  scroll-behavior: none;
+}
+.preContent{
+  background-color: rgba(var(--rgbalight), 0.6);
+	color: var(--fg);
+	font: 1em/1.5 sans-serif;
+	font-size: calc(16px + (24 - 16) * (100vw - 320px) / (1280 - 320));
+	width: 100%;
+	height: 100vh;
+	display: grid;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 500;
+	place-items: center;
+	scroll-behavior: none;
+}
+
+.pl {
+	display: block;
+	width: 2.25em;
+	height: 2.25em;
+	z-index: 700;
+}
+.pl__ring, .pl__ball {
+	animation: ring 2s ease-out infinite;
+	z-index: 700;
+}
+.pl__ball {
+	animation-name: ball;
+	z-index: 700;
+}
+
+
+/* Animation */
+@keyframes ring {
+	from {
+		stroke-dasharray: 0 257 0 0 1 0 0 258;
+	}
+	25% {
+		stroke-dasharray: 0 0 0 0 257 0 258 0;
+	}
+	50%, to {
+		stroke-dasharray: 0 0 0 0 0 515 0 0;
+	}
+}
+@keyframes ball {
+	from, 50% {
+		animation-timing-function: ease-in;
+		stroke-dashoffset: 1;
+	}
+	64% {
+		animation-timing-function: ease-in;
+		stroke-dashoffset: -109;
+	}
+	78% {
+		animation-timing-function: ease-in;
+		stroke-dashoffset: -145;
+	}
+	92% {
+		animation-timing-function: ease-in;
+		stroke-dashoffset: -157;
+	}
+	57%, 71%, 85%, 99%, to {
+		animation-timing-function: ease-out;
+		stroke-dashoffset: -163;
+	}
+}
+
+
+.login-box{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 400px;
+  height: 480px;
+  padding: 30px;
+}
+.login-header {
+  text-align: center;
+  margin: 20px 0 10px 0;
+  display: flex;
+  justify-content: center;
+}
+.login-image {
+  width: 100px; /* adjust the size as needed */
+  height: 100px;
+  border-radius: 50%; /* make it circular */
+  object-fit: cover; /* ensure the image is fully visible within the circle */
+  margin: 20px auto; /* add some margin to center it */
+}
+.login-header header{
+  color: #333;
+  font-size: 30px;
+  font-weight: 600;
+}
+.input-box .input-field{
+  width: 100%;
+  height: 60px;
+  font-size: 17px;
+  padding: 0 25px;
+  margin-bottom: 15px;
+  border-radius: 30px;
+  border: none;
+  box-shadow: 0px 5px 10px 1px var(--shadow);
+  outline: none;
+  transition: .3s;
+  background: var(--white-input);
+  caret-color: var(--dark);
+  color: var(--dark);
+}
+.input-field input{
+  color: (--dark);
+}
+::placeholder{
+  font-weight: 500;
+  color: var(--dark);
+  opacity: 0.3;
+}
+.input-field:focus{
+  width: 105%;
+  caret-color: var(--dark);
+  color: var(--dark);
+}
+.forgot{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+section{
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #555;
+}
+#check{
+  margin-right: 10px;
+}
+a{
+  text-decoration: none;
+  color: var(--login-btn);
+}
+a:hover{
+  text-decoration: underline;
+}
+.input-sumbit{
+  margin-top: 15px;
+  position: relative;
+}
+.sumbit-btn{
+  width: 100%;
+  height: 60px;
+  background: var(--login-btn);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: .3s;
+}
+.input-sumbit label{
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  color: #fff;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform:translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+.submit-btn:hover{
+  background: #000;
+  transform: scale(1.05,1);
+}
+.sign-up-link{
+  text-align: center;
+  font-size: 13px;
+  margin-top: 20px;
+  color: var(--dark);
+}
+.sign-up-link a{
+  color: #000;
+  font-weight: 600;
+}

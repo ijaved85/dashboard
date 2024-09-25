@@ -1,0 +1,614 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Aku Results</title>
+		<meta charset="utf-8" />
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.min.js"></script>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
+	<!-- 	<link rel="stylesheet" href="style.css" /> -->
+	<style>
+	  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	scroll-behavior: smooth;
+	scrollbar-width: none;
+	box-sizing: border-box;
+	font-family: "Noto Serif", serif;
+	font-style: normal;
+}
+*:focus {
+	outline: none;
+	box-shadow: none;
+}
+
+:root{
+  /*Dark Mode Colours*/
+  --text-color:#E3E3E3;
+  --subheading-color:#828282;
+  --placeholder-color:#A6A6A6;
+  /*--primary-color:#242424;*/
+  --primary-color:#0C0C1E;
+  --secondary-color:#060714;
+ /* --secondary-color:#383838;*/
+  --secondary-hover-color:#191c42;
+  /*--secondary-hover-color:#444;*/
+}
+
+.light_mode{
+  /*Light Mode Colours*/
+  --text-color:#222;
+  --subheading-color:#A0A0A0;
+  --placeholder-color:#6C6C6C;
+  --primary-color:#F9F9F9;
+  --secondary-color:#E9EEF6;
+  --secondary-hover-color:#DBE1EA;
+}
+
+body{
+  background: var(--primary-color);
+}
+
+a {
+	text-decoration: none;
+}
+p{
+  color: var(--text-color);
+  font-weight: bold;
+}
+.container {
+	margin: 10px;
+}
+.headSem {
+  font-size: 4.5rem;
+  display: block;
+  margin: 0 auto;
+  font-weight: 900;
+  width: fit-content;
+}
+
+.semester {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 5px;
+	margin: 2rem auto;
+	font-size: 2rem;
+}
+
+.semester-item {
+	outline: none;
+	text-align: center;
+	background-color: transparent;
+	border-radius: 5px;
+	padding: 5px;
+	cursor: pointer;
+	color: var(--text-color);
+}
+
+.semester-item.active {
+	background-color: #3c91e6;
+	color: var(--secondary-color);
+}
+.headSer{
+  font-size: 4.5rem;
+  display: block;
+  margin: 0 auto;
+  font-weight: 900;
+  width: fit-content;
+}
+.searchBy {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  width: 100%;
+}
+
+.searchOpt {
+  margin: 0 40px; 
+	color: var(--text-color);
+  font-size: 2.8rem;
+}
+
+.searchBy p {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.radio {
+	position: relative;
+	margin: 0 0.1rem 0 0;
+	margin: 0 5px;
+	outline: none;
+	cursor: pointer;
+}
+.radio:before {
+	-webkit-transition: -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+	-moz-transition: -moz-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+	transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+	-webkit-transform: scale(0, 0);
+	-moz-transform: scale(0, 0);
+	-ms-transform: scale(0, 0);
+	-o-transform: scale(0, 0);
+	transform: scale(0, 0);
+	content: "";
+	position: absolute;
+	top: 0.1rem;
+	left: 0.125rem;
+	z-index: 1;
+	width: 0.7rem;
+	height: 0.7rem;
+	background: #3c91e6;
+	border-radius: 50%;
+}
+.radio:checked:before {
+	-webkit-transform: scale(1, 1);
+	-moz-transform: scale(1, 1);
+	-ms-transform: scale(1, 1);
+	-o-transform: scale(1, 1);
+	transform: scale(1, 1);
+}
+.radio:after {
+	content: "";
+	position: absolute;
+	top: -0.15rem;
+	left: -0.125rem;
+	width: 1rem;
+	height: 1rem;
+	background: #fff;
+	border: 2px solid #3c91e6;
+	border-radius: 50%;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px auto;
+    font-size: 3rem;
+    table-layout: fixed;
+}
+th, td {
+    border: 1px solid var(--secondary-hover-color);
+    padding: 8px;
+    text-align: center;
+  /*  word-wrap: break-word;*/
+}
+tr{
+  color: var(--text-color);
+  background: var(--secondary-color);
+}
+th {
+    background-color: var(--secondary-hover-color);
+    color: var(--text-color);
+}
+
+.pagination {
+    margin-top: 20px;
+    font-size: 2rem;
+    text-align: center;
+}
+.pagination a {
+    color: var(--text-color);
+    display: inline-block;
+    margin: 0 5px;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+.pagination a.active {
+    background-color: #3c91e6;
+    border-radius: 50%;
+    color: var(--text-color);
+}
+
+.searchBar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.headBar{
+  font-size: 2.2rem;
+}
+.searchBar p{
+  margin-top: 1rem;
+   padding: 0 1rem;
+}
+.searchInputWrapper {
+  position: relative;
+  font-size: 3rem;
+  margin-top:15px;
+}
+
+.searchInput {
+  width: 24rem;
+  margin-right:1rem ;
+  font-size: 2.1rem;
+  height: 4rem;
+  padding:  1.5rem;
+  border-radius: 2rem;
+  border: none;
+  background: var(--secondary-hover-color);
+  color: var(--text-color);
+  transition: transform 0.1s ease-in-out;
+}
+
+::placeholder {
+  margin-left: 1.5rem;
+  padding-left: 1.5rem;
+  font-size: 2.1rem;
+  color: var(--placeholder-color);
+}
+
+/* hide the placeholder text on focus */
+:focus::placeholder {
+  text-indent: -999px;
+}
+
+.searchInput:focus {
+  outline: none;
+  transform: scale(1.1);
+  transition: all 0.1s ease-in-out;
+}
+
+.searchInputIcon {
+  position: absolute;
+  right: 1.8rem;
+  top: 1rem;
+  color: #a1a1a1;
+  font-size: 2.2rem;
+  transition: all 0.1s ease-in-out;
+}
+
+.searchBar:focus-within > .searchInputWrapper > .searchInputIcon {
+  right: 0.2rem;
+}
+
+
+.noData {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh; 
+}
+
+.semMess {
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--text-color); /* adjust the color to your liking */
+  text-align: center;
+  padding: 2rem;
+  border-radius: 10px;
+  background-color: var(--secondary-hover-color); /* add a background color to make it more visible */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* add a subtle shadow */
+}
+
+
+
+@media (max-width: 480px) {
+  * {
+    zoom: 0.83;
+  }
+}
+	</style>
+	</head>
+	<body>
+		<!-- HTML !-->
+		<div class="container">
+				<p class="headSem">Semester</p>
+			<div class="semester">
+				<div class="semester-item sem1">I</div>
+				<div class="semester-item sem2">II</div>
+				<div class="semester-item sem3">III</div>
+				<div class="semester-item sem4">IV</div>
+				<div class="semester-item sem5">V</div>
+				<div class="semester-item sem6">VI</div>
+				<div class="semester-item sem7">VII</div>
+				<div class="semester-item sem8">VIII</div>
+			</div>
+			<div class="data">
+			  <div id="Search">
+					<p class="headSer">Search By</p>
+				<div class="searchBy">
+					<label class="searchOpt">
+						<input type="radio" class="radio" id="searOpt1" name="opt" />
+						List Name
+					</label>
+					<label class="searchOpt">
+						<input type="radio" class="radio" id="searOpt2" name="opt" />
+						Roll Number
+					</label>
+				</div>
+				</div>
+				<div class="student-table">
+					<table id="student-table">
+						<thead>
+							<tr>
+								<th>Roll Number</th>
+								<th>Name</th>
+								<th>Reg Number</th>
+							</tr>
+						</thead>
+						<tbody id="student-data">
+							<!-- Student data will be populated here -->
+						</tbody>
+					</table>
+					<div class="pagination">
+						<!-- Pagination links will be generated here -->
+					</div>
+				</div>
+				
+				<div class="searchBar">
+					  <p class="headBar">Registration Number :&emsp;221091890</p>
+					<div class="searchInputWrapper">
+						<input
+							class="searchInput"
+							type="number"
+							maxlength="2"
+  pattern="[0-9]{2}"
+							placeholder="Last Two Digits"
+						/>
+						<!-- <i class="searchInputIcon fa fa-search"></i> -->
+					</div>
+				</div>
+				
+				<a href="#mainIframe" id="resultFrame" style="opacity: 0;">link</a>
+					<div id="iframe-container"></div>
+					
+			</div>
+			<div class="noData">
+				<h1 class="semMess">Exam Not Conducted!</h1>
+			</div>
+		<!-- 	<div class="download">download</div> -->
+		</div>
+		<!-- <script src="script.js"></script> -->
+		     <script src="../Market/Scriptfiles/common.js"></script>
+
+		<script>
+		const semesterItems = $(".semester-item");
+const iframeContainer = $("#iframe-container");
+let currSemester;
+
+$("#Search").hide();
+$(".noData").hide();
+$(".student-table").hide();
+$(".searchBar").hide();
+
+semesterItems.on("click", function (event) {
+	// Remove active class from all semester items
+	semesterItems.removeClass("active");
+	// Add active class to the clicked semester item
+	$(this).addClass("active");
+
+	// Get the text of the clicked semester item
+	const selectedSemesterText = $(this).text();
+	currSemester = selectedSemesterText;
+	if (selectedSemesterText === "I" || selectedSemesterText === "II") {
+		$(".data").show();
+		$(".noData").hide();
+		$("#Search").show();
+	} else if (selectedSemesterText === "III") {
+		$(".data").hide();
+		$(".noData").show();
+		$("#Search").hide();
+		$(".semMess").text("Result Not Declared!");
+	} else {
+		$(".data").hide();
+		$(".noData").show();
+		$("#Search").hide();
+		$(".semMess").text("Exam Not Conducted!");
+	}
+});
+
+$(document).ready(() => {
+	$('input[name="opt"]').on("change", event => {
+		iframeContainer.html("");
+		if ($(event.target).attr("id") === "searOpt1") {
+			$(".student-table").show();
+			$(".searchBar").hide();
+		} else if ($(event.target).attr("id") === "searOpt2") {
+			$(".student-table").hide();
+			$(".searchBar").show();
+		}
+	});
+});
+
+const students = [
+  { name: "Falak Siddique", regNumber: "27", roll: "01", status: "p" },
+  { name: "Md Afiat Daniyal", regNumber: "01", roll: "02", status: "p" },
+  { name: "Mahpara", regNumber: "35", roll: "03", status: "p" },
+  { name: "Md Hasim Hussain", regNumber: "10", roll: "04", status: "p" },
+  { name: "Nihal Ahmad Raza", regNumber: "47", roll: "05", status: "p" },
+  { name: "Md Danish Raza", regNumber: "42", roll: "06", status: "p" },
+  { name: "Md Ehsan Reza", regNumber: "21", roll: "07", status: "p" },
+  { name: "Md Danish Raza", regNumber: "31", roll: "08", status: "p" },
+  { name: "Noorul Ain", regNumber: "05", roll: "09", status: "p" },
+  { name: "Md Shadab Alam", regNumber: "37", roll: 10, status: "p" },
+  { name: "Nahid Akram", regNumber: "11", roll: 11, status: "a" },
+  { name: "Ragib Ahsan Anjum", regNumber: "49", roll: 12, status: "p" },
+  { name: "Md Shayaque Niyaz", regNumber: "28", roll: 13, status: "p" },
+  { name: "Nasihat Perween", regNumber: "36", roll: 14, status: "p" },
+  { name: "Chandan Kumar", regNumber: "15", roll: 15, status: "a" },
+  { name: "Md Shahjahan", regNumber: "12", roll: 16, status: "p" },
+  { name: "Mukhtar Ashraf", regNumber: "30", roll: 17, status: "p" },
+  { name: "Aman Sagar", regNumber: "55", roll: 18, status: "p" },
+  { name: "Jafar Equbal", regNumber: "29", roll: 19, status: "p" },
+  { name: "Sagar Kumar", regNumber: "20", roll: 20, status: "a" },
+  { name: "Manish Kumar", regNumber: "21", roll: 21, status: "a" },
+  { name: "Abdur Rahman", regNumber: "09", roll: 22, status: "p" },
+  { name: "Akbar Haider", regNumber: "08", roll: 23, status: "p" },
+  { name: "Ashraf Ali", regNumber: "11", roll: 24, status: "p" },
+  { name: "Sahnaj Khatun", regNumber: "04", roll: 25, status: "p" },
+  { name: "Mishba Nihal Rony", regNumber: "56", roll: 26, status: "p" },
+  { name: "Mriganka Adhya", regNumber: "27", roll: 27, status: "a" },
+  { name: "Md Aftab", regNumber: "28", roll: 28, status: "a" },
+  { name: "Avinash Kumar Sharma", regNumber: "29", roll: 29, status: "a" },
+  { name: "Md Ikbal Hussain", regNumber: "02", roll: 30, status: "p" },
+  { name: "Md Sahnawaj", regNumber: "14", roll: 31, status: "p" },
+  { name: "Kashif Kauser", regNumber: "07", roll: 32, status: "p" },
+  { name: "Abdul Khabir", regNumber: "33", roll: 33, status: "a" },
+  { name: "Tabis Rukhsar", regNumber: "41", roll: 34, status: "p" },
+  { name: "Md Asif", regNumber: "35", roll: 35, status: "a" },
+  { name: "Javed Iqbal ", regNumber: "58", roll: 36, status: "p" },
+  { name: "Anand Kumar", regNumber: "37", roll: 37, status: "a" },
+  { name: "Shah Arzan", regNumber: "20", roll: 38, status: "p" },
+  { name: "Arvind Kumar Das", regNumber: "52", roll: 39, status: "p" },
+  { name: "Amit Kumar Kevat", regNumber: "48", roll: 40, status: "p" },
+  { name: "Soyabur Rahman", regNumber: "39", roll: 41, status: "p" },
+  { name: "Md Iftekhar Alam", regNumber: "50", roll: 42, status: "p" },
+  { name: "Farooque Alam", regNumber: "13", roll: 43, status: "p" },
+  { name: "Alakh Kumar", regNumber: "44", roll: 44, status: "a" },
+  { name: "Md Mursalim", regNumber: "24", roll: 45, status: "p" },
+  { name: "Atish Kumar", regNumber: "54", roll: 46, status: "p" },
+  { name: "Md Ashraf Raza", regNumber: "23", roll: 47, status: "p" },
+  { name: "Prity Kumari", regNumber: "48", roll: 48, status: "a" },
+  { name: "Md Hasamuddin", regNumber: "18", roll: 49, status: "p" },
+  { name: "Samser Alam", regNumber: "50", roll: 50, status: "a" },
+  { name: "Md Mubarak", regNumber: "40", roll: 51, status: "p" },
+  { name: "Nurani Jahan", regNumber: "17", roll: 52, status: "p" },
+  { name: "Md Nasim", regNumber: "51", roll: 53, status: "p" },
+  { name: "Md Adil Raja", regNumber: "22", roll: 54, status: "p" },
+  { name: "Khushkadam Usman", regNumber: "26", roll: 55, status: "p" },
+  { name: "Md Shanawaz Alam", regNumber: "53", roll: 56, status: "p" },
+  { name: "Awesh Karni", regNumber: "25", roll: 57, status: "p" },
+  { name: "Najmul Haque", regNumber: "44", roll: 58, status: "p" },
+  { name: "Md Musharraf", regNumber: "33", roll: 59, status: "p" },
+  { name: "Saurav Suman", regNumber: "60", roll: 60, status: "a" }
+];
+
+// Function to populate student data
+const populateStudentData = pageNumber => {
+	const $studentData = $("#student-data");
+	$studentData.empty();
+	const startIndex = (pageNumber - 1) * 10;
+	const endIndex = startIndex + 10;
+	for (let i = startIndex; i < endIndex; i++) {
+		if (i >= students.length) break;
+		const student = students[i];
+	const $row = $(`<tr onclick='result("${student.regNumber}","${student.status}")'>`).html(`
+  <td>2022BP${student.roll}</td>
+  <td>${student.name}</td>
+  <td>${student.status === 'p' ? `221091890${student.regNumber}` : 'Left The Course'}</td>
+`);
+		$studentData.append($row);
+	}
+};
+
+// Function to handle pagination link clicks
+const handlePaginationClick = event => {
+	const currentPage = $(event.target).text();
+	populateStudentData(currentPage);
+	// Remove active class from all links
+	$(".pagination a").removeClass("active");
+	// Add active class to the current link
+	$(event.target).addClass("active");
+};
+
+// Function to generate pagination links
+const generatePaginationLinks = () => {
+	const $pagination = $(".pagination");
+	$pagination.empty();
+	const totalPages = Math.ceil(students.length / 10);
+	for (let i = 1; i <= totalPages; i++) {
+		const $link = $("<a>").attr("href", "#").text(i);
+		$link.on("click", handlePaginationClick);
+		if (i === 1) {
+			$link.addClass("active"); // Add active class to the first link
+		}
+		$pagination.append($link);
+	}
+};
+
+// Initialize pagination
+generatePaginationLinks();
+populateStudentData(1);
+
+$(".searchInput").on("input", e => {
+	const inputValue = $(e.target).val();
+	if (inputValue.length >= 2) {
+		$(e.target).val(inputValue.slice(0, 2));
+
+		const regNo = inputValue.slice(0, 2);
+		result(regNo);
+		//console.log(inputValue);
+	}
+	console.log($(window).height());
+});
+
+const result = (regNo,sta) => {
+  if(sta === 'a'){
+    iframeContainer.html("");
+    return;
+  }
+  
+  // Clear existing iframes
+  iframeContainer.html("");
+  let link;
+  if (currSemester === "I") {
+    link = `https://results.akuexam.net/ResultsBPharm1stSemPub2022.aspx?Sem=I&RegNo=221091890${regNo}`;
+    fheight = "545";
+  } else if (currSemester === "II") {
+    link = `https://results.akuexam.net/ResultsBPharm2ndSemPub2023.aspx?Sem=II&RegNo=221091890${regNo}`;
+    fheight = "590";
+  }
+
+  const iframe = $("<iframe>")
+    .attr({
+      src: link,
+      frameborder: 0,
+      width: "100%",
+      id: "mainIframe",
+      height: 1883 - fheight
+     // height: "100vh"
+    })
+    .css({
+      overflowY: "hidden",
+      filter: 'invert(100%) '
+    })
+    .attr("scrolling", "no");
+
+  iframeContainer.append(iframe);
+// Get the element with the id "resultFrame" using jQuery
+const resultFrameLink = $("#resultFrame");
+// Click the link
+resultFrameLink.trigger("click");
+resultFrameLink.click();
+  // Add event listener to download div
+  //$(".download").on("click", takeScreenshot);
+};
+
+
+
+/*
+const takeScreenshot = () => {
+  const iframe = $("#mainIframe")[0];
+  html2canvas(iframe, {
+    useCORS: true,
+    logging: true,
+    proxy: "https://html2canvas.hertzen.com/proxy"
+  }).then(canvas => {
+    console.log("Canvas generated:", canvas);
+    setTimeout(() => { // Add a small delay to ensure canvas is fully loaded
+      canvas.toBlob(blob => {
+        const url = URL.createObjectURL(new Blob([blob], { type: 'application/pdf' })); // Set MIME type explicitly
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "screenshot.pdf";
+        console.log("Anchor element:", a);
+        console.log("Anchor element href:", a.href);
+        console.log("Triggering anchor element click...");
+        a.click();
+        console.log("Anchor element click triggered.");
+      }, 100); // Add a small delay
+    });
+  });
+};*/
+</script>
+	</body>
+</html>

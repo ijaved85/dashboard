@@ -1,0 +1,21 @@
+{
+  "short_name": "Dashboard",
+  "name": "Dashboard",
+  "icons": [
+    {
+      "src": "fabicon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "fabicon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "https://ijaved85.github.io/dashboard/",
+  // "start_url": "http://localhost:8158/index.html",
+  "display": "standalone",
+  "theme_color": "#000112",
+ "background_color": "#060714"
+}
