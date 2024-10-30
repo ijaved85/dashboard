@@ -42,7 +42,7 @@ html {
   overflow-x: hidden;
 }
 
-body.dark {
+.darks {
   --light: #0C0C1E;
   --grey: #060714;
   --dark: #FBFBFB;
