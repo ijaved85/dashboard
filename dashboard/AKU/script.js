@@ -16,16 +16,18 @@ semesterItems.on("click", function (event) {
 	// Get the text of the clicked semester item
 	const selectedSemesterText = $(this).text();
 	currSemester = selectedSemesterText;
-	if (selectedSemesterText === "I" || selectedSemesterText === "II") {
+	if (selectedSemesterText === "I" || selectedSemesterText === "II" || selectedSemesterText === "III") {
 		$(".data").show();
 		$(".noData").hide();
 		$("#Search").show();
-	} else if (selectedSemesterText === "III") {
+	} /*else if (selectedSemesterText === "III") {
 		$(".data").hide();
 		$(".noData").show();
 		$("#Search").hide();
 		$(".semMess").text("Result Not Declared!");
-	} else {
+		
+	} */
+	else {
 		$(".data").hide();
 		$(".noData").show();
 		$("#Search").hide();
@@ -182,7 +184,11 @@ const result = (regNo,sta) => {
   } else if (currSemester === "II") {
     link = `https://results.akuexam.net/ResultsBPharm2ndSemPub2023.aspx?Sem=II&RegNo=221091890${regNo}`;
     fheight = "615";
+  } else if (currSemester === "III") {
+    link = `https://results.akuexam.net/ResultsBPharm3rdSemPub2023.aspx?Sem=III&RegNo=221091890${regNo}`;
+    fheight = "615";
   }
+
 
   const iframe = $("<iframe>")
     .attr({
